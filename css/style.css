@@ -190,3 +190,27 @@ li {
 li {
   margin: 0 20px;
 }
+
+/*------------------------------------------------------------------ */
+
+#my-contact {
+  margin-top: var(--heading-top-margin);
+  font-size: var(--heading-size);
+  text-align: center;
+
+  margin-bottom: 0px;
+}
+
+#email-container {
+  text-align: center;
+}
+#my-email {
+  display: inline-block;
+  text-align: center;
+
+  padding: 15px;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 5px;
+  border-color: var(--text-color);
+}
