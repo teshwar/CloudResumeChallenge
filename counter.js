@@ -6,9 +6,8 @@ async function updateVisitCount() {
   try {
     // Make a network request to your Azure Function URL.
     // The `fetch` function returns a Promise.
-    const response = await fetch(
-      "https://teshwarcloudresumechallenge.azurewebsites.net/api/GetAndUpdateVisitCount?code=1_Wzd4KwTbR9hEYgHgo9YG2su0bX1lkZGEG7dAe2pQhIAzFuOPZt4g=="
-    );
+    const response = await fetch();
+    //"function url"
 
     // Parse the JSON response from the function to get the new count.
     const newCount = await response.json();
