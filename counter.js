@@ -1,25 +1,31 @@
-// Get the HTML element where the count will be displayed
 const visitCountElement = document.querySelector("#visitor-count");
 
-// Asynchronous function to fetch and display the visit count from Azure Function
 async function updateVisitCount() {
   try {
-    // Make a network request to your Azure Function URL.
-    // The `fetch` function returns a Promise.
-    const response = await fetch();
-    //"function url"
+    // Replace with your Azure Function URL
+    const response = await fetch(
+      "https://teshwar-c-sharp.azurewebsites.net/api/visitCount?"
+    );
 
-    // Parse the JSON response from the function to get the new count.
-    const newCount = await response.json();
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
 
-    // Update the text content of the HTML element with the new count.
-    visitCountElement.textContent = `Visitor Count: ${newCount}`;
+    // Parse the JSON body
+    const data = await response.json();
+
+    // Make sure the data has the "count" property
+    if (!data || typeof data.count !== "number") {
+      throw new Error("Invalid data format from server.");
+    }
+
+    // Update visitor count in HTML
+    visitCountElement.textContent = `Visitor Count: ${data.count}`;
   } catch (error) {
-    // If the fetch request fails, log the error and display an error message.
     console.error("Error fetching visit count:", error);
     visitCountElement.textContent = "Error loading count.";
   }
 }
 
-// Call the function to run the process when the page loads.
+// Run when page loads
 updateVisitCount();
